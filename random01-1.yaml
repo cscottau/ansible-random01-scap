@@ -8157,7 +8157,7 @@
         
     - name: Record Events that Modify User/Group Information
       blockinfile:
-        path: /etc/sudit/audit.rules
+        path: /etc/audit/audit.rules
         block: |
           -w /etc/group -p wa -k audit_rules_usergroup_modification
           -w /etc/passwd -p wa -k audit_rules_usergroup_modification
