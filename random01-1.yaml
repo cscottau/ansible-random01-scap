@@ -8146,4 +8146,25 @@
         - restrict_strategy
         - sshd_set_loglevel_info
 
-
+    - name: Add local_gpgcheck to /etc/yum.conf
+      lineinfile:
+        path: /etc/yum.conf
+        regexp: ^\s*localpkg_gpgcheck\s*=\s*(1|True|yes)\s*$
+        line: local_pkg_gpgcheck=1
+        state: present
+      tags:
+        - manually_added
+        
+      - name: Audit
+        blockinfile:
+          path: /etc/sudit/audit.rules
+          block: |
+            -w /etc/group -p wa -k audit_rules_usergroup_modification
+            -w /etc/passwd -p wa -k audit_rules_usergroup_modification
+            -w /etc/gshadow -p wa -k audit_rules_usergroup_modification
+            -w /etc/shadow -p wa -k audit_rules_usergroup_modification
+            -w /etc/security/opasswd -p wa -k audit_rules_usergroup_modification
+         tags:
+        - manually_added
+        
+        
