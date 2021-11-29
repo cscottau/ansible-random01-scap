@@ -8155,16 +8155,16 @@
       tags:
         - manually_added
         
-      - name: Audit
-        blockinfile:
-          path: /etc/sudit/audit.rules
-          block: |
-            -w /etc/group -p wa -k audit_rules_usergroup_modification
-            -w /etc/passwd -p wa -k audit_rules_usergroup_modification
-            -w /etc/gshadow -p wa -k audit_rules_usergroup_modification
-            -w /etc/shadow -p wa -k audit_rules_usergroup_modification
-            -w /etc/security/opasswd -p wa -k audit_rules_usergroup_modification
-         tags:
+    - name: Record Events that Modify User/Group Information
+      blockinfile:
+        path: /etc/sudit/audit.rules
+        block: |
+          -w /etc/group -p wa -k audit_rules_usergroup_modification
+          -w /etc/passwd -p wa -k audit_rules_usergroup_modification
+          -w /etc/gshadow -p wa -k audit_rules_usergroup_modification
+          -w /etc/shadow -p wa -k audit_rules_usergroup_modification
+          -w /etc/security/opasswd -p wa -k audit_rules_usergroup_modification
+      tags:
         - manually_added
         
         
