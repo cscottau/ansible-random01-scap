@@ -8150,14 +8150,14 @@
       lineinfile:
         path: /etc/yum.conf
         regexp: ^\s*localpkg_gpgcheck\s*=\s*(1|True|yes)\s*$
-        line: local_pkg_gpgcheck=1
+        line: localpkg_gpgcheck=1
         state: present
       tags:
         - manually_added
         
     - name: Record Events that Modify User/Group Information
       blockinfile:
-        path: /etc/sudit/audit.rules
+        path: /etc/audit/audit.rules
         block: |
           -w /etc/group -p wa -k audit_rules_usergroup_modification
           -w /etc/passwd -p wa -k audit_rules_usergroup_modification
